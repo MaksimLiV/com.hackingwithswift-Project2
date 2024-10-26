@@ -21,6 +21,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="0H2-F7-jqP"/>
                                     <constraint firstAttribute="height" constant="102" id="2S0-BM-YRo"/>
+                                    <constraint firstAttribute="width" secondItem="ifT-x7-Cwo" secondAttribute="height" multiplier="100:51" id="Hd3-vN-KTu"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
@@ -31,6 +32,7 @@
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRg-qE-vOZ">
                                 <rect key="frame" x="96.666666666666686" y="362" width="200" height="102"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="tRg-qE-vOZ" secondAttribute="height" multiplier="100:51" id="TzD-Kz-hvq"/>
                                     <constraint firstAttribute="width" constant="200" id="iAj-Tf-Qsu"/>
                                     <constraint firstAttribute="height" constant="102" id="iBX-dq-zjr"/>
                                 </constraints>
@@ -45,6 +47,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="AX6-EP-xR7"/>
                                     <constraint firstAttribute="height" constant="100" id="HRg-uK-4Zc"/>
+                                    <constraint firstAttribute="width" secondItem="mnE-TK-6Qd" secondAttribute="height" multiplier="2:1" id="X0G-Cd-6nG"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us"/>
@@ -56,9 +59,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ifT-x7-Cwo" firstAttribute="height" secondItem="mnE-TK-6Qd" secondAttribute="height" multiplier="1.02" id="9D1-9P-QbP"/>
                             <constraint firstItem="mnE-TK-6Qd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="R9e-83-Ibq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tRg-qE-vOZ" secondAttribute="bottom" constant="20" id="RPc-Jb-ZCp"/>
                             <constraint firstItem="ifT-x7-Cwo" firstAttribute="centerX" secondItem="mnE-TK-6Qd" secondAttribute="centerX" id="TkA-cl-4ra"/>
                             <constraint firstItem="ifT-x7-Cwo" firstAttribute="top" secondItem="mnE-TK-6Qd" secondAttribute="bottom" constant="30" id="X97-t9-73c"/>
+                            <constraint firstItem="tRg-qE-vOZ" firstAttribute="height" secondItem="ifT-x7-Cwo" secondAttribute="height" id="aJC-9L-3ba"/>
                             <constraint firstItem="tRg-qE-vOZ" firstAttribute="centerX" secondItem="ifT-x7-Cwo" secondAttribute="centerX" id="bhB-uB-v9o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="mnE-TK-6Qd" secondAttribute="top" constant="3" id="snq-JF-ong"/>
                             <constraint firstItem="tRg-qE-vOZ" firstAttribute="top" secondItem="ifT-x7-Cwo" secondAttribute="bottom" constant="30" id="wRX-hQ-Kyp"/>
