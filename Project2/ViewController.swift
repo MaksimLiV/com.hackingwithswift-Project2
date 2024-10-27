@@ -29,6 +29,10 @@ class ViewController: UIViewController {
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
+        
+        button1.clipsToBounds = true
+        button2.clipsToBounds = true
+        button3.clipsToBounds = true
                 
         askQuestion()
         
