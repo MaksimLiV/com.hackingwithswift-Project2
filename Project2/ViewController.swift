@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var score = 0
     var correctAnswer = 0
     var questionsAsked = 0
+    var highestScore = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,9 @@ class ViewController: UIViewController {
         button1.clipsToBounds = true
         button2.clipsToBounds = true
         button3.clipsToBounds = true
-                
+        
+        highestScore = UserDefaults.standard.integer(forKey: "highestScore")
+        
         askQuestion()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(showScore))
@@ -50,9 +53,8 @@ class ViewController: UIViewController {
         button1.tag = 0
         button2.tag = 1
         button3.tag = 2
-         
         
-        title = "\(countries[correctAnswer].uppercased()) | Your score: \(score)"
+        title = "\(countries[correctAnswer].uppercased()) | Score: \(score) | Best: \(highestScore)"
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -66,46 +68,41 @@ class ViewController: UIViewController {
         } else {
             title = "Wrong"
             score -= 1
-            message = "That’s the flag of \(countries[sender.tag].uppercased()) \n Your score is \(score)"
+            message = "That's the flag of \(countries[sender.tag].uppercased()) \nYour score is \(score)"
         }
         
         questionsAsked += 1
-            print("Questions asked: \(questionsAsked)")
+        print("Questions asked: \(questionsAsked)")
         
-            let ac: UIAlertController
+        let ac: UIAlertController
+        
+        if score == 10 || questionsAsked == 10 {
+            var endMessage = "Your final score is \(score)"
             
-        if score == 10 {
-                print("Game Over condition triggered (score)")
-                ac = UIAlertController(title: "Game Over", message: "Congratulations, you scored 10 points!", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: { _ in
-                    self.score = 0
-                    self.questionsAsked = 0
-                    self.askQuestion()
-                }))
-            } else if questionsAsked == 10 {
-                print("Game Over condition triggered (questions asked)")
-                ac = UIAlertController(title: "Game Over", message: "Your final score is \(score)", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: { _ in
-                    self.score = 0
-                    self.questionsAsked = 0
-                    self.askQuestion()
-                }))
-            } else {
-                ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+            if score > highestScore {
+                highestScore = score
+                UserDefaults.standard.set(highestScore, forKey: "highestScore")
+                endMessage = "Congratulations! You have a new high score: \(score)! 🎉"
             }
             
-            present(ac, animated: true)
-    }
-    
-    @objc func showScore() {
-        let scoreMessage = "Your current score is \(score)"
-        let ac = UIAlertController (title: "Score", message: scoreMessage, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
+            ac = UIAlertController(title: "Game Over", message: endMessage, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Start Over", style: .default, handler: { _ in
+                self.score = 0
+                self.questionsAsked = 0
+                self.askQuestion()
+            }))
+        } else {
+            ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+        }
+        
         present(ac, animated: true)
     }
     
-    
-    
-    
+    @objc func showScore() {
+        let scoreMessage = "Current score: \(score)\nHighest score: \(highestScore)"
+        let ac = UIAlertController(title: "Score", message: scoreMessage, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+    }
 }
